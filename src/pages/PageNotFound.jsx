@@ -1,6 +1,6 @@
 const PageNotFoundPage = () => {
     return (
-        <div>Page not found page</div>
+        <div className="container mx-auto">Page not found page</div>
     )
 }
 
