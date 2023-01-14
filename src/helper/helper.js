@@ -24,6 +24,17 @@ export async function authenticate(username){
     } catch (error) {
         return {error: "Username doesn't exist...!"}
     }
+}
+
+export async function getUser({username}){
+    try {
+        const {data} = await axios.get(`/api/user/${username}`);
+        return {data};
+    } catch (error) {
+        return {error: "Password doesn't match...!"}
+    }
+}
+
 /** update user profile function */
 export async function updateUser(response){
     try {
@@ -37,6 +48,13 @@ export async function updateUser(response){
     }
 }
 
+export async function getUsername(){
+    const token = localStorage.getItem("token");
+    if(!token) return Promise.reject("Cannot find token...!");
+    
+    const decode = jwt_decode(token);
+    return decode;
+}
 
 export async function generateOTP(username){
     try {
