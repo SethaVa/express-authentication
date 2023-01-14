@@ -5,8 +5,9 @@ import useFetch from "../hooks/fetch";
 import style from "../styles/Username.module.css";
 import avatar from "../assets/profile.png";
 import { useFormik } from "formik";
-import { passwordValidate, verifyPassword } from "../helper/validate";
+import { passwordValidate } from "../helper/validate";
 import { toast, Toaster } from "react-hot-toast";
+import { verifyPassword } from "../helper/helper";
 
 const PasswordPage = () => {
     const navigate = useNavigate();
@@ -21,15 +22,15 @@ const PasswordPage = () => {
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: async values => {
-            let loginPromiss = verifyPassword({username, password: values.password});
+            let verifyPasswordPromise = verifyPassword({username, password: values.password});
 
-            toast.promise(loginPromiss, {
+            toast.promise(verifyPasswordPromise, {
                 loading: 'Checking...',
                 success: <b>Login Successfully!</b>,
                 error: <b>Password not match!</b>,
             })
 
-            loginPromiss.then((res) => {
+            verifyPasswordPromise.then((res) => {
                 const token = res.data;
                 localStorage.setItem('token', token);
                 navigate("/profile");
