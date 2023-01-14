@@ -27,6 +27,15 @@ export async function resetPasswordValidation(values){
 
     return errors;
 }
+
+export async function registerValidation(values){
+    const errors = usernameVerify({}, values);
+    passwordVerify({}, values);
+    emailVerify({}, values);
+
+    return errors;
+}
+
 export async function passwordValidate(values){
     const errors = passwordVerify({}, values);
 

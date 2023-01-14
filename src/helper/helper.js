@@ -1,4 +1,22 @@
-import axios from "axios"
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+
+export async function registerUser(credentials){
+    try {
+        const { data : { msg }, status } = await axios.post(`/api/register`, credentials);
+
+        let { username, email } = credentials;
+
+        /** send email */
+        if(status === 201){
+            await axios.post('/api/registerMail', { username, userEmail : email, text : msg})
+        }
+
+        return Promise.resolve(msg);
+    } catch (error) {
+        return Promise.reject({error});
+    }
+}
 
 export async function authenticate(username){
     try {
