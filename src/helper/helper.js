@@ -6,6 +6,33 @@ export async function authenticate(username){
     } catch (error) {
         return {error: "Username doesn't exist...!"}
     }
+
+export async function generateOTP(username){
+    try {
+        const {data: {code}, status} = await axios.get("/api/generateOTP", {params: username});
+
+        // send mail with OTP
+        if(status === 201){
+            const {data: {email}} = await getUser({username});
+            const text = `Your Password Recovery OTP is ${code}. Verify and recovery your password.`;
+            await axios.get("/api/registerMail", {username, userEmail: email, text, subject: "Password Recovery OTP"})
+        }
+
+        return Promise.resolve(code)
+    } catch (error) {
+        return Promise.reject({error})
+    }
+}
+
+export async function verityOTP({username, code}){
+    try {
+        const {data, status} = await axios.get("/api/verifyOTP", {params: {username, code}});
+        return {data, status};
+    } catch (error) {
+        return Promise.reject(error)
+    }
+}
+
 export async function resetPassword({username, password}){
     try {
         const {data, status} = await axios.get("/api/resetPassword", {username, password});
