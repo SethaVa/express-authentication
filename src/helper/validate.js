@@ -17,6 +17,31 @@ export async function usernameValidate(values){
     return error;
 }
 
+export async function resetPasswordValidation(values){
+    const errors = passwordVerify({}, values);
+
+    if(values.newPassword !== values.confirmPWD){
+        errors.exist = toast.error("Password not match...1")
+    }
+
+    return errors;
+}
+function passwordVerify(errors = {}, values){
+    const specialChar = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+    if(!values.password){
+        errors.password = toast.error("Password Required...!");
+    }else if(values.password === " "){
+        errors.password = toast.error("Wrong password...!")
+    }else if(values.password.length < 4){
+        errors.password = toast.error("Password must be more than 4 characters long")
+    }else if(specialChar.test(values.password)){
+        errors.password = toast.error("Password must have special character")
+    }
+
+    return errors;
+}
+
 function usernameVerify(error = {}, values){
     const {username} = values
     if(username){
