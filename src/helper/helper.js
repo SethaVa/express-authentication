@@ -15,3 +15,12 @@ export async function resetPassword({username, password}){
     }
 
 }
+
+export async function verifyPassword({username, password}){
+    try {
+        const {data} = await axios.get(`/api/login`, {username, password});
+        return Promise.resolve({data});
+    } catch (error) {
+        return Promise.reject({error: "Password doesn't match...!"});
+    }
+}

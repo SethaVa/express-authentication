@@ -1,3 +1,4 @@
+import axios from "axios";
 import { toast } from "react-hot-toast"
 import { authenticate } from "./helper";
 
@@ -26,6 +27,12 @@ export async function resetPasswordValidation(values){
 
     return errors;
 }
+export async function passwordValidate(values){
+    const errors = passwordVerify({}, values);
+
+    return errors;
+}
+
 function passwordVerify(errors = {}, values){
     const specialChar = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
