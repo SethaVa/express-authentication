@@ -33,6 +33,12 @@ export async function passwordValidate(values){
     return errors;
 }
 
+export async function profileValidation(values){
+    const errors = emailVerify({}, values);
+
+    return errors;
+}
+
 function passwordVerify(errors = {}, values){
     const specialChar = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
 
@@ -55,6 +61,19 @@ function usernameVerify(error = {}, values){
         error.username = toast.error("Username required...!");
     }else if(username.includes(" ")){
         error.username = toast.error("Invalid username...!")
+    }
+
+    return error;
+}
+
+/** validate email */
+function emailVerify(error ={}, values){
+    if(!values.email){
+        error.email = toast.error("Email Required...!");
+    }else if(values.email.includes(" ")){
+        error.email = toast.error("Wrong Email...!")
+    }else if(!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)){
+        error.email = toast.error("Invalid email address...!")
     }
 
     return error;
