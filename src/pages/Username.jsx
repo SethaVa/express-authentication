@@ -23,9 +23,9 @@ const UsernamePage = () => {
         }
       })
     return (
-        <div className="container mx-auto">
-            <div className="flex items-center justify-center h-screen">
-                <div className={style.glass}>
+        <div className="container mx-auto overflow-auto">
+            <div className="flex items-center justify-center h-screen my-10">
+                <div className={`${style.glass}`}>
                     <div className="flex flex-col title items-center">
                         <h4 className="text-5xl font-bold">Hello Again!</h4>
                         <span className="p-4 text-xl w-2/3 text-center text-gray-500">Explore more by connecting with us</span>

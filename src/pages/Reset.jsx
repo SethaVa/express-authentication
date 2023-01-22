@@ -42,7 +42,7 @@ const ResetPage = () => {
 
             <Toaster reverseOrder={false} position="top-center"></Toaster>
 
-            <div className="flex items-center justify-center h-screen">
+            <div className="flex items-center justify-center py-10">
                 <div className={style.glass}>
                     <div className="flex flex-col title items-center">
                         <h4 className="text-5xl font-bold">Reset</h4>

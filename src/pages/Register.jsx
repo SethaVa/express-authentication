@@ -47,8 +47,8 @@ const RegisterPage = () => {
 
             <Toaster reverseOrder={false} position="top-center"></Toaster>
 
-            <div className="flex items-center justify-center h-screen">
-                <div className={style.glass} style={{width: "45%", paddingTop: '3rem'}}>
+            <div className="flex items-center justify-center my-10">
+                <div className={style.glass} style={{width: "45%"}}>
                     <div className="flex flex-col title items-center">
                         <h4 className="text-5xl font-bold">Register</h4>
                         <span className="p-4 text-xl w-2/3 text-center text-gray-500">Happy to join with you!</span>
