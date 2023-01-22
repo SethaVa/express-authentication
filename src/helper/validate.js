@@ -21,10 +21,9 @@ export async function usernameValidate(values){
 export async function resetPasswordValidation(values){
     const errors = passwordVerify({}, values);
 
-    if(values.newPassword !== values.confirmPWD){
+    if(values.password !== values.confirmPWD){
         errors.exist = toast.error("Password not match...1")
     }
-
     return errors;
 }
 
