@@ -59,16 +59,16 @@ export async function getUsername(){
 
 export async function generateOTP(username){
     try {
-        const {data: {code}, status} = await axios.get("/api/generateOTP", {params: username});
+        const {data: {code}, status} = await axios.get("/api/generateOTP", {params: {username}});
 
         // send mail with OTP
         if(status === 201){
             const {data: {email}} = await getUser({username});
             const text = `Your Password Recovery OTP is ${code}. Verify and recovery your password.`;
-            await axios.get("/api/registerMail", {username, userEmail: email, text, subject: "Password Recovery OTP"})
+            await axios.post("/api/registerMail", {username, userEmail: email, text, subject: "Password Recovery OTP"})
         }
 
-        return Promise.resolve(code)
+        return Promise.resolve()
     } catch (error) {
         return Promise.reject({error})
     }

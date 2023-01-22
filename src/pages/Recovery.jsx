@@ -1,13 +1,14 @@
 import { useFormik } from "formik";
 import { useState } from "react";
 import { toast, Toaster } from "react-hot-toast";
+import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { generateOTP, verityOTP } from "../helper/helper";
 import { usernameValidate } from "../helper/validate";
 import style from "../styles/Username.module.css";
 
 const RecoveryPage = () => {
-    const [username, setUsername] = useState("");
+    const username = useSelector(state => state.username);
     const navigate = useNavigate();
     const [otp, setOtp] = useState("");
 
@@ -61,11 +62,11 @@ const RecoveryPage = () => {
 
                             <button className={style.btn} type="submit">Recover</button>
                         </div>
-
-                        <div className="text-center py-4">
-                            <span className="text-gray-500">Can not get OTP? <button onClick={resendOTP} className="text-red-500" to="/register">Resend</button></span>
-                        </div>
                     </form>
+
+                    <div className="text-center py-4">
+                    <span className='text-gray-500'>Can't get OTP? <button onClick={resendOTP} className='text-red-500'>Resend</button></span>
+                    </div>
                 </div>
             </div>
         </div>
