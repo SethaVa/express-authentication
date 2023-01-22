@@ -66,7 +66,7 @@ function passwordVerify(errors = {}, values){
 
 function usernameVerify(error = {}, values){
     const {username} = values
-    if(username){
+    if(!username){
         error.username = toast.error("Username required...!");
     }else if(username.includes(" ")){
         error.username = toast.error("Invalid username...!")
