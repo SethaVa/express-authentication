@@ -1,6 +1,8 @@
 import axios from "axios";
 import jwt_decode from "jwt-decode";
 
+axios.defaults.baseURL = process.env.REACT_APP_SERVER_DOMAIN;
+
 export async function registerUser(credentials){
     try {
         const { data : { msg }, status } = await axios.post(`/api/register`, credentials);
@@ -38,7 +40,6 @@ export async function getUser({username}){
 /** update user profile function */
 export async function updateUser(response){
     try {
-        
         const token = await localStorage.getItem('token');
         const data = await axios.put('/api/updateuser', response, { headers : { "Authorization" : `Bearer ${token}`}});
 
