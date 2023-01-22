@@ -14,22 +14,22 @@ const ResetPage = () => {
 
     const formik = useFormik({
         initialValues: {
-            newPassword: "",
+            password: "",
             confirmPWD: ""
         },
         validate: resetPasswordValidation,
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit: async values => {
-            let resetPassword = resetPassword({username, password: values.newPassword});
+            let resetPasswordPromise = resetPassword({username, password: values.password});
 
-            toast.promise(resetPassword, {
+            toast.promise(resetPasswordPromise, {
                 loading: 'Updating...',
                 success: <b>Reset Successfully!</b>,
                 error: <b>Could Not Reset!</b>,
             })
 
-            resetPassword.then(() => navigate("/password"));
+            resetPasswordPromise.then(() => navigate("/password"));
        }
     });
 
@@ -51,7 +51,7 @@ const ResetPage = () => {
 
                     <form className="pt-20" onSubmit={formik.handleSubmit}>
                         <div className="textbox flex flex-col items-center gap-6">
-                            <input {...formik.getFieldProps("newPassword")} className={style.textbox} type="text" placeholder="New Password"></input>
+                            <input {...formik.getFieldProps("password")} className={style.textbox} type="text" placeholder="New Password"></input>
                             <input {...formik.getFieldProps("confirmPWD")} className={style.textbox} type="text" placeholder="Confirm Password"></input>
                             <button className={style.btn} type="submit">Reset</button>
                         </div>
