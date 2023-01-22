@@ -31,7 +31,7 @@ const PasswordPage = () => {
             })
 
             verifyPasswordPromise.then((res) => {
-                const token = res.data;
+                const {token} = res.data;
                 localStorage.setItem('token', token);
                 navigate("/profile");
             });
