@@ -18,8 +18,7 @@ const UsernamePage = () => {
         validateOnBlur: false,
         validateOnChange: false,
         onSubmit : async values => {
-          console.log("call now");  
-          dispatch(setUsername(values.username));
+          dispatch(setUsername({username: values.username}));
           navigate('/password')
         }
       })
