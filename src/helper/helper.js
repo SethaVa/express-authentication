@@ -85,7 +85,7 @@ export async function verityOTP({username, code}){
 
 export async function resetPassword({username, password}){
     try {
-        const {data, status} = await axios.get("/api/resetPassword", {username, password});
+        const {data, status} = await axios.put("/api/resetPassword", {username, password});
         return Promise.resolve({data, status})
     } catch (error) {
         return Promise.reject({error})
