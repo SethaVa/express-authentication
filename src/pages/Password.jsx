@@ -15,7 +15,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 const PasswordPage = () => {
   const navigate = useNavigate();
   const username = useSelector((state) => state.username);
-  const [{ apiData, isLoading, serverError }] = useFetch(`/user/${username}`);
+  const [{ apiData, isLoading, serverError }] = useFetch(`user/${username}`);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const formik = useFormik({
